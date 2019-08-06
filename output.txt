@@ -1,0 +1,77 @@
+1: LOGIN admin pass
+Login successful
+
+2: CREATE ROLE ROLECUSTOMER CK
+Role created successfully
+
+3: CREATE ROLE ROLEMANAGER MK
+Role created successfully
+
+4: CREATE USER USER1 PASS1
+User created successfully
+
+5: CREATE USER USER2 PASS2
+User created successfully
+
+6: GRANT ROLE USER1 ROLEMANAGER
+Role assigned successfully
+
+7: GRANT ROLE USER2 ROLECUSTOMER
+Role assigned successfully
+
+8: GRANT PRIVILEGE INSERT TO ROLEMANAGER ON Customers
+Privilege granted successfully
+
+9: GRANT PRIVILEGE INSERT TO ROLEMANAGER ON Products
+Privilege granted successfully
+
+10: GRANT PRIVILEGE SELECT TO ROLEMANAGER ON Customers
+Privilege granted successfully
+
+11: GRANT PRIVILEGE SELECT TO ROLEMANAGER ON Products
+Privilege granted successfully
+
+12: GRANT PRIVILEGE SELECT TO ROLECUSTOMER ON Products
+Privilege granted successfully
+
+13: LOGIN USER1 PASS1
+Login successful
+
+14: INSERT INTO Customers VALUES ('1', 'first 1', 'last 1', 'address 1') ENCRYPT 4 ROLEMANAGER
+Row inserted successfully
+
+15: INSERT INTO Products VALUES ('1', 'product 1', 'category 1', '1', '19.99') ENCRYPT 3 ROLECUSTOMER
+Row inserted successfully
+
+16: SELECT * FROM Customers
+CUSTOMERID, FIRSTNAME, LASTNAME, ADDRESS
+1, first 1, last 1, ZZNPAAAAA
+
+17: SELECT * FROM Products
+PRODUCTID, PRODUCTNAME, CATEGORY, COMPANYID, EXFACTORYPRICE
+1, product 1, PZXPAAAAAA, 1, 19.99
+
+18: LOGIN USER2 PASS2
+Login successful
+
+19: SELECT * FROM Customers
+
+20: SELECT * FROM Products
+PRODUCTID, PRODUCTNAME, CATEGORY, COMPANYID, EXFACTORYPRICE
+1, product 1, ZZXPAAAAAA, 1, 19.99
+
+21: INSERT INTO Customers VALUES ('2', 'first 2', 'last 2', 'address 2') ENCRYPT 3 ROLEMANAGER
+Authorization failure
+
+22: LOGIN admin pass
+Login successful
+
+23: REVOKE PRIVILEGE SELECT FROM ROLECUSTOMER ON Products
+Privilege revoked successfully
+
+24: LOGIN USER2 PASS2
+Login successful
+
+25: SELECT * FROM Products
+
+26: QUIT
